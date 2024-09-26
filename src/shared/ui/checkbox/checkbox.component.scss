@@ -1,0 +1,63 @@
+:host {
+  display: block;
+}
+input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  &:checked + label {
+    background: rgb(94, 96, 206);
+    border-color: rgb(94, 96, 206);
+    &::after {
+      width: 14px;
+      left: 60%;
+    }
+    &::before {
+      width: 7px;
+      left: 33%;
+    }
+    &:hover {
+      background: rgb(130, 132, 250);
+      border-color: rgb(130, 132, 250);
+    }
+  }
+  &:focus-visible + label {
+    outline: solid 2px rgb(242, 4, 4);
+  }
+}
+label {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgb(78, 168, 222);
+  border-radius: 50%;
+  transition: all 0.3s;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    width: 0;
+    height: 2px;
+    margin: auto;
+    background-color: rgb(242, 242, 242);
+  }
+  &::before {
+    transition: all 0.3s;
+    top: 56%;
+    left: 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  &::after {
+    transition: all 0.3s 0.1s;
+    top: 51%;
+    left: 0;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  &:hover {
+    border-color: rgb(30, 111, 159);
+    background: rgb(30, 111, 159, 0.2);
+  }
+}
