@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'shared/lib';
+import { ButtonComponent } from './button';
 
 @NgModule({
-  declarations: [],
+  declarations: [ButtonComponent],
   imports: [SharedModule],
-  exports: [],
+  exports: [ButtonComponent],
 })
 export class UiModule {}
