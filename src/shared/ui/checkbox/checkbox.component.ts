@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CheckBoxInputs } from './checkbox-inputs.model';
 
 @Component({
   selector: 'app-checkbox',
@@ -6,6 +7,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './checkbox.component.scss',
 })
 export class CheckboxComponent {
+  @Input() public checkboxInputs: CheckBoxInputs = {
+    id: 0,
+    isChecked: false,
+  };
+
   @Output() public readonly inputCheckedEvent: EventEmitter<boolean> =
     new EventEmitter<boolean>();
 
