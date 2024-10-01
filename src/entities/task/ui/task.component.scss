@@ -3,8 +3,8 @@
   border: 1px solid rgb(51, 51, 51);
   border-radius: 8px;
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.06);
-  background: rgb(38, 38, 38);
   padding: 16px;
+  transition: background-color 0.3s;
 }
 
 .task {
@@ -17,12 +17,16 @@
   // .task__title
   &__title {
     font-size: 20px;
+    transition: all 0.3s;
   }
   // .task__body
   &__body {
     display: flex;
     align-items: center;
     gap: 16px;
+  }
+  &__desc {
+    transition: all 0.3s;
   }
   // .task__edit
   &__edit {
@@ -54,4 +58,12 @@
 svg {
   fill: rgb(128, 128, 128);
   transition: fill 0.3s;
+}
+
+:host.strikethrough {
+  & .task__title,
+  .task__desc {
+    color: rgb(128, 128, 128);
+    text-decoration-line: line-through;
+  }
 }

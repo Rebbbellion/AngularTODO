@@ -1,12 +1,16 @@
 <div class="task__title-container">
-  <h5 class="task__title">Task Title</h5>
+  <h5 class="task__title">{{ task.title }}</h5>
   <div>
-    <button type="button" class="task__edit">
+    <button type="button" class="task__edit" (click)="editTaskEvent.emit(task)">
       <svg>
         <use href="icons/sprite.svg#edit"></use>
       </svg>
     </button>
-    <button type="button" class="task__delete">
+    <button
+      type="button"
+      class="task__delete"
+      (click)="deleteTaskEvent.emit(task)"
+    >
       <svg>
         <use href="icons/sprite.svg#trash"></use>
       </svg>
@@ -14,9 +18,11 @@
   </div>
 </div>
 <div class="task__body">
-  <app-checkbox></app-checkbox>
+  <app-checkbox
+    [checkboxInputs]="{ id: localId, isChecked: task.completed }"
+    (inputCheckedEvent)="task.completed = $event"
+  ></app-checkbox>
   <p class="task__desc">
-    Integer urna interdum massa libero auctor neque turpis turpis semper. Duis
-    vel sed fames integer.
+    {{ task.desc }}
   </p>
 </div>
