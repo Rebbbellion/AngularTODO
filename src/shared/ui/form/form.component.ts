@@ -1,14 +1,12 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
   HostListener,
   inject,
   ViewChild,
 } from '@angular/core';
-import { TaskAPI } from 'shared/api';
 import { fadeInOut } from 'shared/lib';
-import { ButtonConfig } from '../button';
+import { FormCreationConfig } from './form.config';
 import { FormService } from './form.service';
 
 @Component({
@@ -23,40 +21,32 @@ import { FormService } from './form.service';
 export class FormComponent {
   //UI Logic
   @ViewChild('taskForm', { read: ElementRef })
-  formElement!: ElementRef<HTMLFormElement>;
+  public formElement!: ElementRef<HTMLFormElement>;
 
-  public formService: FormService = inject(FormService);
-
-  @HostListener('click', ['$event.target']) removeForm(eventTarget: Node) {
+  public formConfig!: FormCreationConfig;
+  //Listeners
+  @HostListener('click', ['$event.target']) public removeForm(
+    eventTarget: Node
+  ) {
     if (!this.formElement.nativeElement.contains(eventTarget)) {
       this.formService.removeForm();
     }
   }
-  @HostListener('window:keydown', ['$event']) closeFormWithEscapeBtn(
+  @HostListener('window:keydown', ['$event']) public closeFormWithEscapeBtn(
     event: KeyboardEvent
   ) {
     if (event.key === 'Escape') {
       this.formService.removeForm();
     }
   }
-  public formTitle: string = '';
-
-  public buttonConfig: ButtonConfig = {
-    title: '',
-    svgId: '',
-    stylesClass: '',
-  };
   //Form Handling Logic
-  public formModel: TaskAPI = {
-    title: '',
-    desc: '',
-    completed: false,
-  };
-
-  public readonly formSubmitEvent: EventEmitter<TaskAPI> =
-    new EventEmitter<TaskAPI>();
+  public readonly formService: FormService = inject(FormService);
 
   public onSubmit() {
-    this.formSubmitEvent.emit(this.formModel);
+    if (this.formConfig.formType === 'edit') {
+      this.formService.taskEditSubject.next(this.formConfig.formValues);
+    } else {
+      this.formService.taskCreateSubject.next(this.formConfig.formValues);
+    }
   }
 }

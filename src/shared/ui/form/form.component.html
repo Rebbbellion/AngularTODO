@@ -1,6 +1,6 @@
 <form #taskForm="ngForm" (ngSubmit)="onSubmit()">
   <div class="flex-row">
-    <h3>{{ formTitle }}</h3>
+    <h3>{{ formConfig.title }}</h3>
     <button
       class="cross"
       type="button"
@@ -15,7 +15,7 @@
       placeholder="Enter task title"
       required
       autocomplete=""
-      [(ngModel)]="formModel.title"
+      [(ngModel)]="formConfig.formValues.title"
     />
     <label for="task-title">Task Title</label>
   </div>
@@ -25,17 +25,17 @@
       id="task-desc"
       rows="6"
       placeholder="Enter Task Description (optional)"
-      [(ngModel)]="formModel.desc"
+      [(ngModel)]="formConfig.formValues.desc"
     ></textarea>
     <label for="task-desc">Task Description</label>
   </div>
-  <div *ngIf="(buttonConfig.title | lowercase) === 'edit'">
+  <div *ngIf="formConfig.formType === 'edit'">
     <div class="checkbox">
       <app-checkbox
-        (inputCheckedEvent)="formModel.completed = $event"
+        (inputCheckedEvent)="formConfig.formValues.completed = $event"
       ></app-checkbox>
       <div class="checkbox-title">
-        <span *ngIf="formModel.completed; else undone" @fadeInOut>
+        <span *ngIf="formConfig.formValues.completed; else undone" @fadeInOut>
           Completed
         </span>
         <ng-template #undone> <span @fadeInOut> Undone </span></ng-template>
@@ -44,6 +44,6 @@
     <label for="completed">Task Completion</label>
   </div>
   <button type="submit" [disabled]="taskForm.invalid">
-    <app-button [buttonConfig]="buttonConfig"></app-button>
+    <app-button [buttonConfig]="formConfig.buttonConfig"></app-button>
   </button>
 </form>

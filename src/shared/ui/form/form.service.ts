@@ -1,7 +1,8 @@
 import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
-import { TaskAPI } from 'shared/api';
+import { Subject } from 'rxjs';
 import { FormComponent } from './form.component';
 import { FormCreationConfig } from './form.config';
+import { FormValues } from './form.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,17 +12,11 @@ export class FormService {
 
   public createForm(
     container: ViewContainerRef,
-    formConfig: FormCreationConfig,
-    formValues: TaskAPI
+    formConfig: FormCreationConfig
   ) {
     if (!this.formComponentRef) {
       this.formComponentRef = container.createComponent(FormComponent);
-      this.formComponentRef.instance.formTitle = formConfig.title;
-      this.formComponentRef.instance.buttonConfig = formConfig.buttonConfig;
-      this.formComponentRef.instance.formModel = formValues;
-      this.formComponentRef.instance.formSubmitEvent.subscribe(
-        formConfig.submitCallback
-      );
+      this.formComponentRef.instance.formConfig = formConfig;
     }
   }
 
@@ -31,4 +26,7 @@ export class FormService {
       this.formComponentRef = null;
     }
   }
+
+  public readonly taskCreateSubject: Subject<FormValues> = new Subject();
+  public readonly taskEditSubject: Subject<FormValues> = new Subject();
 }
