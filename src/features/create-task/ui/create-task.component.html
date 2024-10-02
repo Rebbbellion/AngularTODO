@@ -1,0 +1,8 @@
+<input type="text" placeholder="Enter task title" #taskTitle />
+<button
+  (click)="formConfig.formValues.title = taskTitle.value"
+  (click)="showForm()"
+>
+  <app-button [buttonConfig]="buttonConfig"></app-button>
+</button>
+<ng-template #container></ng-template>
