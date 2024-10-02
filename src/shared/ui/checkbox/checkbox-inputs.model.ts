@@ -1,4 +1,4 @@
 export type CheckBoxInputs = {
-  id: number;
+  id: number | string;
   isChecked: boolean;
 };

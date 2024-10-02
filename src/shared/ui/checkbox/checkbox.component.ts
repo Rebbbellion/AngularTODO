@@ -8,7 +8,7 @@ import { CheckBoxInputs } from './checkbox-inputs.model';
 })
 export class CheckboxComponent {
   @Input() public checkboxInputs: CheckBoxInputs = {
-    id: 0,
+    id: 'completed',
     isChecked: false,
   };
 
