@@ -1,9 +1,10 @@
 :host {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
   font-size: 0.875rem;
   font-weight: 700;
-  text-align: center;
-  flex-shrink: 0;
 }
 :host.create-btn,
 :host.edit-btn {
@@ -19,7 +20,6 @@
     width: 16px;
     height: 16px;
     fill: rgb(242, 242, 242);
-    transform: translateY(3px);
-    margin-left: 8px;
+    vertical-align: middle;
   }
 }
