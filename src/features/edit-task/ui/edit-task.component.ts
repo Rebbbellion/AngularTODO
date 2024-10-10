@@ -7,6 +7,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { Task } from 'entities/task/model';
+import { fadeInOut } from 'shared/lib';
 import {
   BUTTON_CONFIGS,
   ButtonConfig,
@@ -18,6 +19,10 @@ import {
   selector: 'app-edit-task',
   templateUrl: './edit-task.component.html',
   styleUrl: './edit-task.component.scss',
+  animations: [fadeInOut],
+  host: {
+    '[@fadeInOut]': '',
+  },
 })
 export class EditTaskComponent implements OnInit {
   @ViewChild('container', { read: ViewContainerRef, static: true })
