@@ -21,4 +21,12 @@ export class TaskComponent {
   @Output() public editTaskEvent: EventEmitter<Task> = new EventEmitter<Task>();
   @Output() public deleteTaskEvent: EventEmitter<Task> =
     new EventEmitter<Task>();
+
+  editTask() {
+    this.editTaskEvent.emit({ ...this.task });
+  }
+
+  deleteTask() {
+    this.deleteTaskEvent.emit(this.task);
+  }
 }

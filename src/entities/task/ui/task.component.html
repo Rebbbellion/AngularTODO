@@ -1,16 +1,12 @@
 <div class="task__title-container">
   <h5 class="task__title">{{ task.title }}</h5>
   <div>
-    <button type="button" class="task__edit" (click)="editTaskEvent.emit(task)">
+    <button type="button" class="task__edit" (click)="editTask()">
       <svg>
         <use href="icons/sprite.svg#edit"></use>
       </svg>
     </button>
-    <button
-      type="button"
-      class="task__delete"
-      (click)="deleteTaskEvent.emit(task)"
-    >
+    <button type="button" class="task__delete" (click)="deleteTask()">
       <svg>
         <use href="icons/sprite.svg#trash"></use>
       </svg>
