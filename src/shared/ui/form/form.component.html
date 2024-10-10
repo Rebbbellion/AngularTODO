@@ -1,4 +1,4 @@
-<form #taskForm="ngForm" (ngSubmit)="onSubmit()">
+<form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)">
   <div class="flex-row">
     <h3>{{ formConfig.title }}</h3>
     <button

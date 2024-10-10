@@ -5,6 +5,7 @@ import {
   inject,
   ViewChild,
 } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { fadeInOut } from 'shared/lib';
 import { FormCreationConfig } from './form.config';
 import { FormService } from './form.service';
@@ -42,11 +43,15 @@ export class FormComponent {
   //Form Handling Logic
   public readonly formService: FormService = inject(FormService);
 
-  public onSubmit() {
+  public onSubmit(form: NgForm) {
     if (this.formConfig.formType === 'edit') {
-      this.formService.taskEditSubject.next(this.formConfig.formValues);
+      this.formService.taskEditSubject.next({ ...this.formConfig.formValues });
     } else {
-      this.formService.taskCreateSubject.next(this.formConfig.formValues);
+      this.formService.taskCreateSubject.next({
+        ...this.formConfig.formValues,
+      });
     }
+    form.resetForm();
+    this.formService.removeForm();
   }
 }

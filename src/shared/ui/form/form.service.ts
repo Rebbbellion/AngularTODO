@@ -24,9 +24,11 @@ export class FormService {
     if (this.formComponentRef) {
       this.formComponentRef.destroy();
       this.formComponentRef = null;
+      this.formClosedSubject.next();
     }
   }
 
   public readonly taskCreateSubject: Subject<FormValues> = new Subject();
   public readonly taskEditSubject: Subject<FormValues> = new Subject();
+  public readonly formClosedSubject: Subject<void> = new Subject<void>();
 }

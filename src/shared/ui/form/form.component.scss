@@ -67,7 +67,8 @@ button[type="submit"] {
     width: 100%;
   }
 
-  &:disabled .create-btn {
+  &:disabled .create-btn,
+  &:disabled .edit-btn {
     background-color: gray;
     cursor: default;
   }
