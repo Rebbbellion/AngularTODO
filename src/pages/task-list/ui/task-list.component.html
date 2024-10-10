@@ -1,0 +1,12 @@
+<app-task
+  *ngFor="let task of tasks; let i = index; trackBy: trackByFunction"
+  [localId]="i"
+  [task]="task"
+  (editTaskEvent)="taskOnEdit = $event"
+  (deleteTaskEvent)="deleteTask($event)"
+  @fadeInOut
+></app-task>
+<app-edit-task
+  *ngIf="taskOnEdit"
+  [currentEditTask]="taskOnEdit"
+></app-edit-task>
