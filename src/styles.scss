@@ -1,0 +1,14 @@
+@import url("./public/scss/reset.scss");
+@import url("./public/fonts/fonts.scss");
+
+*:focus-visible {
+  outline: solid 3px rgb(242, 4, 4);
+}
+
+body {
+  font-family: "Inter";
+  font-size: 1rem;
+  line-height: 1.2;
+  background: rgb(26, 26, 26);
+  color: rgb(242, 242, 242);
+}
